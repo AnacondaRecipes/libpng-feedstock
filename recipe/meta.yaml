@@ -18,15 +18,17 @@ build:
     - vc14  # [win and (py35 or py36)]
 
 requirements:
+  host:
+    - zlib 1.2.8
+    - vc 9  # [win and py27]
+    - vc 10  # [win and py34]
+    - vc 14  # [win and (py35 or py36)]
   build:
     - python  # [win]
     - cmake  # [win]
     - libtool  # [not win]
     - automake  # [not win]
-    - zlib 1.2.8
-    - vc 9  # [win and py27]
-    - vc 10  # [win and py34]
-    - vc 14  # [win and (py35 or py36)]
+    - {{ compiler('c') }}
   run:
     - zlib 1.2.8
     - vc 9  # [win and py27]
