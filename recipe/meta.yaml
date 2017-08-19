@@ -10,30 +10,28 @@ source:
   md5: 897ccec1ebfb0922e83c2bfaa1be8748
 
 build:
-  number: 1
-  skip: True  # [win and py36]
+  number: 2
   features:
-    - vc9  # [win and py27]
-    - vc10  # [win and py34]
-    - vc14  # [win and (py35 or py36)]
+    - vc{{ vc }}  # [win]
+  run_exports:
+    # SO name changes at minor rev bumps.
+    - {{ pin_subpackage('libpng', max_pin='x.x') }}
 
 requirements:
   host:
-    - zlib 1.2.8
-    - vc 9  # [win and py27]
-    - vc 10  # [win and py34]
-    - vc 14  # [win and (py35 or py36)]
+    - zlib
   build:
     - python  # [win]
     - cmake  # [win]
     - libtool  # [not win]
     - automake  # [not win]
     - {{ compiler('c') }}
-  run:
-    - zlib 1.2.8
-    - vc 9  # [win and py27]
-    - vc 10  # [win and py34]
-    - vc 14  # [win and (py35 or py36)]
+  #run:
+    # relying on run_exports to bring in zlib and vc
+    # - zlib
+    # - vc 9  # [win and py27]
+    # - vc 10  # [win and py34]
+    # - vc 14  # [win and (py35 or py36)]
 
 test:
   commands:
@@ -59,3 +57,4 @@ about:
 extra:
   recipe-maintainers:
     - ocefpaf
+    - msarahan
