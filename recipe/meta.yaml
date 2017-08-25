@@ -1,4 +1,4 @@
-{% set version = "1.6.28" %}
+{% set version = "1.6.32" %}
 
 package:
   name: libpng
@@ -18,17 +18,17 @@ build:
     - {{ pin_subpackage('libpng', max_pin='x.x') }}
 
 requirements:
-  host:
-    - zlib
   build:
+    - {{ compiler('c') }}
     - python  # [win]
     - cmake  # [win]
     - libtool  # [not win]
     - automake  # [not win]
-    - {{ compiler('c') }}
+  host:
+    - zlib
   #run:
     # relying on run_exports to bring in zlib and vc
-    # - zlib
+    # - zlib 1.2.8
     # - vc 9  # [win and py27]
     # - vc 10  # [win and py34]
     # - vc 14  # [win and (py35 or py36)]
