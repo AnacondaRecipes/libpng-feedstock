@@ -7,7 +7,7 @@ package:
 source:
   fn: libpng-{{ version }}.tar.gz
   url: http://download.sourceforge.net/libpng/libpng-{{ version }}.tar.gz
-  md5: 897ccec1ebfb0922e83c2bfaa1be8748
+  md5: c379427048bb0882ab1e286ca386260e
 
 build:
   number: 2
@@ -20,7 +20,6 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
-    - python  # [win]
     - cmake  # [win]
     - libtool  # [not win]
     - automake  # [not win]
