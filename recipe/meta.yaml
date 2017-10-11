@@ -10,7 +10,7 @@ source:
   md5: c379427048bb0882ab1e286ca386260e
 
 build:
-  number: 2
+  number: 3
   features:
     - vc{{ vc }}  # [win]
   run_exports:
