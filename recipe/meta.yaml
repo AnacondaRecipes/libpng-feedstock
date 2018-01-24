@@ -6,10 +6,10 @@ package:
 
 source:
   url: http://download.sourceforge.net/libpng/libpng-{{ version }}.tar.gz
-  sha256: 574623a4901a9969080ab4a2df9437026c8a87150dfd5c235e28c94b212964a7
+  md5: 03fbc5134830240104e96d3cda648e71
 
 build:
-  number: 4
+  number: 0
   run_exports:
     # SO name changes at minor rev bumps.
     - {{ pin_subpackage('libpng', max_pin='x.x') }}
