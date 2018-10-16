@@ -21,6 +21,7 @@ requirements:
     - cmake  # [win]
     - libtool  # [not win]
     - automake  # [not win]
+    - make      # [not win]
   host:
     - zlib
   #run:
