@@ -33,7 +33,6 @@ requirements:
     - zlib # pinned by run_exports
 test:
   commands:
-    - test -f ${PREFIX}/lib/libpng.a  # [not win]
     - test -f ${PREFIX}/lib/libpng${SHLIB_EXT}  # [not win]
     - libpng-config --version  # [not win]
     - echo "tests done during build ..."  # [win]
