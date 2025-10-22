@@ -8,6 +8,7 @@ cmake -G Ninja                                  ^
       -D ZLIB_INCLUDE_DIR=%LIBRARY_INC%         ^
       -DCMAKE_C_FLAGS="%CFLAGS% -DWIN32"        ^
       -DCMAKE_BUILD_TYPE=Release                ^
+      -DPNG_STATIC=OFF ^
       %SRC_DIR%
 if errorlevel 1 exit /b 1
 
@@ -22,13 +23,7 @@ if errorlevel 1 exit 1
 copy %LIBRARY_LIB%\libpng16.lib %LIBRARY_LIB%\libpng.lib
 if errorlevel 1 exit 1
 
-copy %LIBRARY_LIB%\libpng16_static.lib %LIBRARY_LIB%\libpng_static.lib
-if errorlevel 1 exit 1
-
 :: Make copies of the .lib files without the 'lib' prefix.
 copy %LIBRARY_LIB%\libpng16.lib %LIBRARY_LIB%\png16.lib
-if errorlevel 1 exit 1
-
-copy %LIBRARY_LIB%\libpng16_static.lib %LIBRARY_LIB%\png16_static.lib
 if errorlevel 1 exit 1
 

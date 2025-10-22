@@ -6,7 +6,8 @@ export CFLAGS="$CFLAGS -I$PREFIX/include -L$PREFIX/lib"
 export CPPFLAGS="$CPPFLAGS -I$PREFIX/include"
 
 ./configure --prefix=$PREFIX \
-            --with-zlib-prefix=$PREFIX
+            --with-zlib-prefix=$PREFIX \
+            --disable-static
 
 make -j${CPU_COUNT} ${VERBOSE_AT}
 if [[ "${CONDA_BUILD_CROSS_COMPILATION}" != "1" ]]; then
