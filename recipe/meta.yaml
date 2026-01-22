@@ -1,12 +1,14 @@
-{% set version = "1.6.50" %}
+{% set name = "libpng" %}
+{% set version = "1.6.54" %}
+{% set short_version = version.split('.')[0] ~ version.split('.')[1] %}
 
 package:
-  name: libpng
+  name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://download.sourceforge.net/libpng/libpng-{{ version }}.tar.gz
-  sha256: 708f4398f996325819936d447f982e0db90b6b8212b7507e7672ea232210949a
+  url: https://download.sourceforge.net/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 472db714567391842e410090df5a37e0f5b2ec67148a3007678b0482d2ba5219
   patches:
     - 0001-Include-pkg-config-files-in-the-Windows-packages-too.patch
     - 0002-Ensure-that-lm-is-not-included-in-Windows-pkg-config.patch
@@ -16,25 +18,29 @@ build:
   skip: true  # [win and vc<14]
   run_exports:
     # SO name changes at minor rev bumps.
-    - {{ pin_subpackage('libpng', max_pin='x.x') }}
+    - {{ pin_subpackage(name, max_pin='x.x') }}
 
 requirements:
   build:
-    - make      # [unix]
-    - cmake >=3.14     # [win]
-    - ninja     # [win]
-    - libtool   # [not win]
-    - automake  # [not win]
-    - {{ compiler('c') }}
     - {{ stdlib('c') }}
+    - {{ compiler('c') }}
+    - make          # [unix]
+    - cmake >=3.14  # [win]
+    - ninja-base    # [win]
+    - libtool       # [not win]
+    - automake      # [not win]
   host:
     - zlib {{ zlib }}
   run:
     - zlib # pinned by run_exports
 test:
   commands:
-    - test -f ${PREFIX}/lib/libpng${SHLIB_EXT}  # [not win]
-    - libpng-config --version  # [not win]
+    - test -f ${PREFIX}/lib/libpng${SHLIB_EXT}                          # [unix]
+    - test -f ${PREFIX}/lib/libpng{{ short_version }}${SHLIB_EXT}       # [unix]
+    - test -f ${PREFIX}/include/libpng{{ short_version }}/png.h         # [unix]
+    - test -f ${PREFIX}/include/libpng{{ short_version }}/pngconf.h     # [unix]
+    - test -f ${PREFIX}/include/libpng{{ short_version }}/pnglibconf.h  # [unix]
+    - libpng-config --version  # [unix]
     - echo "tests done during build ..."  # [win]
 
 about:
