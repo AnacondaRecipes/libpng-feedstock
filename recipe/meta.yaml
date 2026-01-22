@@ -31,8 +31,7 @@ requirements:
     - automake      # [not win]
   host:
     - zlib {{ zlib }}
-  run:
-    - zlib # pinned by run_exports
+
 test:
   commands:
     - test -f ${PREFIX}/lib/libpng${SHLIB_EXT}                          # [unix]
