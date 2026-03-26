@@ -1,3 +1,12 @@
+/*
+ * Basic libpng functional test.
+ *
+ * This test verifies that libpng can be linked and used for a minimal
+ * write workflow. It creates a 1x1 RGB PNG image, writes it to disk,
+ * reopens the file, and checks the PNG signature to confirm that the
+ * output is a valid PNG file.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <png.h>
