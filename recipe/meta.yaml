@@ -35,6 +35,7 @@ requirements:
 test:
   requires:
     - {{ compiler('c') }}  # [unix]
+    - zlib {{ zlib }}
   files:
     - test_libpng_write.c
   commands:
