@@ -1,0 +1,5 @@
+anaconda_config_version: 1
+upstream_sources:
+  - webpage:
+      url: http://download.sourceforge.net/libpng/libpng-{}.tar.gz
+      regex: (?:.*)libpng-(.*)\.tar\.xz
